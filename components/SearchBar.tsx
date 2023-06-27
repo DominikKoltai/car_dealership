@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   <button type="submit" className={`-ml-3 z-10 ${otherClasses}`}>
-    <Image 
+    <Image
       src="/magnifying-glass.svg"
       alt="magnifying glass"
       width={40}
@@ -16,7 +16,7 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
       className="object-contain"
     />
   </button>
-)
+);
 
 const SearchBar = () => {
   const [manufacturer, setManufacturer] = useState("");
@@ -26,7 +26,7 @@ const SearchBar = () => {
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(manufacturer === "" && model === "") {
+    if (manufacturer === "" && model === "") {
       return alert("Please fill in the search bar");
     }
 
@@ -36,22 +36,24 @@ const SearchBar = () => {
   const updateSearchParams = (model: string, manufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search);
 
-    if(model) {
-      searchParams.set('model', model);
+    if (model) {
+      searchParams.set("model", model);
     } else {
-      searchParams.delete('model');
+      searchParams.delete("model");
     }
 
-    if(manufacturer) {
-      searchParams.set('manufacturer', manufacturer);
+    if (manufacturer) {
+      searchParams.set("manufacturer", manufacturer);
     } else {
-      searchParams.delete('manufacturer');
+      searchParams.delete("manufacturer");
     }
 
-    const newPathName = `${window.location.pathname}?${searchParams.toString()}`;
+    const newPathName = `${
+      window.location.pathname
+    }?${searchParams.toString()}`;
 
     router.push(newPathName);
-  }
+  };
 
   return (
     <form className="searchbar" onSubmit={handleSearch}>
@@ -63,7 +65,7 @@ const SearchBar = () => {
         <SearchButton otherClasses="sm:hidden" />
       </div>
       <div className="searchbar__item">
-        <Image 
+        <Image
           src="/model-icon.png"
           width={25}
           height={25}
